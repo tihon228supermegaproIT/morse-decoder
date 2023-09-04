@@ -1,13 +1,13 @@
-const semver = require('semver');
-const colors = require('colors/safe');
+decodeMorse = function(morseCode) {
+    outPut = "";
 
-const { engines: { node: nodeVersion }} = require('./package');
+    for (var i = 0; i < morseCode.split(" ").length; i++) {
+        if (i === "   ") {
+            outPut += " ";
+        } else {
+            outPut += MORSE_CODE[morseCode.split(" ")[i]];
+        }
 
-if (!semver.satisfies(process.version, nodeVersion)) {
-  process.emitWarning(
-    colors.red(`
-      For this task we are strictly recomend you to use node ${nodeVersion}.
-      Now you are using node ${process.version}, if you are using any of features that not supported by node ${nodeVersion}, score won't be submitted
-    `)
-  );
+    }
+    return outPut;
 }
