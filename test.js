@@ -1,20 +1,21 @@
-var MORSE_CODE = {".-": "a", "-...":"b", "-.-.": "c", "-..": "d", ".":"e", "..-.":"f", "--.":"g", "....":"h", "..":"i", ".---":"j", "-.-":"k", ".-..":"l", "--":"m", "-.":"n", "---":"o", ".--.":"p", "--.-":"q", ".-.":"r", "...":"s", "-":"t", "..-":"u", "...-":"v", ".--":"w", "-..-":"x", "-.--":"y", "--..":"z", ".----":"1", "..---":"2", "...--":"3", "....-":"4", ".....":"5", "-....":"6", "--...":"7", "---..":"8", "----.":"9", "-----":"0", "|":" "};
+function decodeMorseCode(code) {
+  let decoded = '';
+  const morseCodeMap = {
+    '0000001111': 'm',
+    '0000000010': 'e',
+    // add more mappings for other letters as needed
+  };
 
-var decodeMorse = function(morseCode){
-  var words = (morseCode).split('  ');
-  var letters = words.map((w) => w.split(' '));
-  var decoded = [];
-
-  for(var i = 0; i < letters.length; i++){
-    decoded[i] = [];
-    for(var x = 0; x < letters[i].length; x++){
-        if(MORSE_CODE[letters[i][x]]){
-            decoded[i].push( MORSE_CODE[letters[i][x]] );
-        }
+  for (let i = 0; i < code.length; i += 10) {
+    const letter = code.substr(i, 10);
+    if (letter === '**********') {
+      decoded += ' ';
+    } else {
+      decoded += morseCodeMap[letter];
     }
   }
 
-  return decoded.map(arr => arr.join('')).join(' ');
+  return decoded;
 }
 
-decodeMorse('.... . -.--   .--- ..- -.. .');
+console.log(decodeMorseCode('00000011110000000010')); // Output: 'me'
