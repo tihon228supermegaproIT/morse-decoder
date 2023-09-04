@@ -1,13 +1,53 @@
-decodeMorse = function(morseCode) {
-    outPut = "";
+const decodeLetter = letter => {
+  return MORSE_CODE[letter];
+}
 
-    for (var i = 0; i < morseCode.split(" ").length; i++) {
-        if (i === "   ") {
-            outPut += " ";
-        } else {
-            outPut += MORSE_CODE[morseCode.split(" ")[i]];
-        }
+const decodeWord = word => {
+  return word.split(' ').map(decodeLetter).join('');
+}
 
-    }
-    return outPut;
+const decodeMorse = morseCode => {
+  return morseCode.trim().split('   ').map(decodeWord).join(' ');
+}
+
+
+// helper - this is preloaded Morse code:
+
+const MORSE_CODE = {
+  '.-': 'A',
+  '-…': 'B',
+  '-.-.': 'C',
+  '-..': 'D',
+  '.': 'E',
+  '..-.': 'F',
+  '--.': 'G',
+  '….': 'H',
+  '..': 'I',
+  '.---': 'J',
+  '-.-': 'K',
+  '.-..': 'L',
+  '--': 'M',
+  '-.': 'N',
+  '---': 'O',
+  '.--.': 'P',
+  '--.-': 'Q',
+  '.-.': 'R',
+  '…': 'S',
+  '-': 'T',
+  '..-': 'U',
+  '…-': 'V',
+  '.--': 'W',
+  '-..-': 'X',
+  '-.--': 'Y',
+  '--..': 'Z',
+  '-----': '0',
+  '.----': '1',
+  '..---': '2',
+  '…--': '3',
+  '….-': '4',
+  '…..': '5',
+  '-….': '6',
+  '--…': '7',
+  '---..': '8',
+  '----.': '9',
 }
